@@ -21,9 +21,9 @@
 ##############################################################################
 {
     'name': 'Risk Management',
-    'version': '1.1',
-    'author': 'Value Decision Ltd',
-    'website': 'http://www.valuedecision.com',
+    'version': '2.0',
+    'author': 'Tactix4 Ltd',
+    'website': 'http://www.tactix4.com',
     'category': 'Project Management',
     'description': """
        This module allows to manage risk in at least two different contexts
