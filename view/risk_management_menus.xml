@@ -2,7 +2,7 @@
 <openerp>
 	<data>
 	<menuitem
-            icon="terp-project" id="menu_risks"
+            icon="terp-project" id="menu_risk_top"
             name="Risks" sequence="110"
             groups="group_risk_management_manager,group_risk_management_user"
             web_icon="static/src/img/icon.png"

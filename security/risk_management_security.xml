@@ -18,21 +18,3 @@
 </data>
 </openerp>
 
-<openerp>
-    <data noupdate="0">
-        <record model="ir.module.category" id="module_freeswitch_category">
-            <field name="name">Freeswitch</field>
-            <field name="sequence">27</field>
-        </record>
-        <record id="group_freeswitch_user" model="res.groups">
-            <field name="name">Freeswitch User</field>
-            <field name="category_id" ref="module_freeswitch_category"/>
-        </record>
-        <record id="group_freeswitch_manager" model="res.groups">
-            <field name="name">Freeswitch Management</field>
-            <field name="implied_ids" eval="[(4, ref('group_freeswitch_user'))]"/>
-            <field name="category_id" ref="module_freeswitch_category"/>
-            <field name="users" eval="[(4, ref('base.user_root'))]"/>
-        </record>
-    </data>
-</openerp>
