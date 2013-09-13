@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+    <record id="group_risk_management_manager" model="res.groups">
+        <field name="name">Risk / Manager</field>
+    </record>
+
+    <record id="group_risk_management_user" model="res.groups">
+        <field name="name">Risk / User</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_definitions">
+        <field name="groups_id" eval="[(6,0,[ref('group_risk_management_manager')])]"/>
+    </record>
+    <record model="ir.ui.menu" id="menu_definitions">
+        <field name="groups_id" eval="[(6,0,[ref('group_risk_management_user')])]"/>
+    </record>
+</data>
+</openerp>
+
+<openerp>
+    <data noupdate="0">
+        <record model="ir.module.category" id="module_freeswitch_category">
+            <field name="name">Freeswitch</field>
+            <field name="sequence">27</field>
+        </record>
+        <record id="group_freeswitch_user" model="res.groups">
+            <field name="name">Freeswitch User</field>
+            <field name="category_id" ref="module_freeswitch_category"/>
+        </record>
+        <record id="group_freeswitch_manager" model="res.groups">
+            <field name="name">Freeswitch Management</field>
+            <field name="implied_ids" eval="[(4, ref('group_freeswitch_user'))]"/>
+            <field name="category_id" ref="module_freeswitch_category"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>
