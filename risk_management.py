@@ -54,7 +54,16 @@ risk_management_proximity()
 
 class risk_management_risk (osv.osv):
     _name = 'risk.management.risk'
-    _description = 'Risk log table'
+    _description = 'Risk'
+    _inherit = ['mail.thread','ir.needaction_mixin']
+
+    _track = {
+        'state': {
+            'risk.mt_risk_draft': lambda self, cr, uid, obj, ctx=None: obj['state'] in ['draft'],
+            'risk.mt_risk_active': lambda self, cr, uid, obj, ctx=None: obj['state'] in ['active'],
+            'risk.mt_risk_closed': lambda self, cr, uid, obj, ctx=None: obj['state'] in ['closed']
+        }
+    }
     
     def _calculate_expected_inherent_value(self, cr, uid, ids, field_name, arg, context={}):
         ret = {}

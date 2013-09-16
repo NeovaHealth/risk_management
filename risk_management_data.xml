@@ -59,5 +59,26 @@
             <field name="type">opportunity</field>
             <field name="name">Share</field>
 </record>
+
+    <!-- Risk-related subtypes for messaging / Chatter -->
+    <record id="mt_risk_draft" model="mail.message.subtype">
+        <field name="name">Risk In Draft</field>
+        <field name="res_model">risk.management.risk</field>
+        <field name="default" eval="False"/>
+        <field name="description">Risk in draft</field>
+    </record>
+    <record id="mt_risk_active" model="mail.message.subtype">
+        <field name="name">Risk Set Active</field>
+        <field name="res_model">risk.management.risk</field>
+        <field name="default" eval="False"/>
+        <field name="description">Risk set active</field>
+    </record>
+    <record id="mt_risk_closed" model="mail.message.subtype">
+        <field name="name">Risk Closed</field>
+        <field name="res_model">risk.management.risk</field>
+        <field name="default" eval="False"/>
+        <field name="description">Risk closed</field>
+    </record>
+
 </data>
 </openerp>
