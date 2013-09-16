@@ -30,62 +30,59 @@
 			<field name="model">risk.management.risk</field>
 			<field name="priority">5</field>
 			<field name="arch" type="xml">
-				<form string='Risk Detail'>
-				 <group col="6" colspan="4">
-				 	<group colspan="5" col="6">
-						<field name="name"/>
-						<field name="description"/>
-						<field name="project_id"/>
-						<field name="author_id"/>
-						<field name="date_registered" readonly="1"/>
-						<field name="date_modified"/>
-						<field name="risk_category_id"/>						
-                	</group>
-                	<group colspan="1" col="2">
-						<field name="proximity_id"/>
-					</group>
-				 </group>              	
-			    <notebook colspan="4">
-   	            	<page string="Description">						
-                		<field name="description_event"/>
-                		<field name="description_cause"/>
-						<field name="description_effect"/>
-						<newline/>
-						<group col="5" colspan="5">
-		                    <group col="3" colspan="3">
-		                		<field name="state"/>
-		                    </group>
-							<group col="2" colspan="2">
-			                	<button name="set_state_draft" type="object" states="active,closed" string="Set Draft" icon="gtk-execute"/>
-			                 	<button name="set_state_closed" type="object" states="active" string="Close Risk" icon="gtk-cancel"/>
-			                 	<button name="set_state_active" type="object" states="draft" string="Set Active" icon="gtk-apply"/>
-							</group>
-		                </group>
-                    </page>
-   	            	<page string="Risk Score">
-   	            	 <group col="6" colspan="4">
-   	            			<group col="4" colspan="5">
-                    			<field name="impact_inherent"/>
-								<field name="probability_inherent"/>
-								<field name="impact_residual"/>
-								<field name="probability_residual"/>
-							</group>
-		             		<group col="2" colspan="1">	
-								<field name="expected_value_inherent" readonly="1" string="Inherent Risk Score"/>					
-								<field name="expected_value_residual" readonly="1" string="Residual Risk Score"/>
-							</group>
-					 </group>	
-                    </page>
-                    <page string="Risk Response">
-                    	<group col="6" colspan="3">
-                    		<field name="risk_response_category_id"/>
-							<field name="risk_owner_id"/>
-						</group>
-						<group col="6" colspan="6">
-							<field name="risk_response_ids" string="Response Actions" context="{'user_invisible': True, 'default_project_id':project_id}"/>
-						</group>
-					</page>
-                </notebook>	
+				<form string='Risk' version="7.0">
+                    <header>
+                        <button name="set_state_draft" type="object" states="active,closed" string="Set Draft" icon="gtk-execute"/>
+                        <button name="set_state_closed" type="object" states="active" string="Close Risk" icon="gtk-cancel"/>
+                        <button name="set_state_active" type="object" states="draft" string="Set Active" icon="gtk-apply"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,closed"/>
+                    </header>
+                    <sheet string="Risk Detail">
+				        <group col="6" colspan="4">
+				 	        <group colspan="5" col="6">
+						        <field name="name"/>
+						        <field name="description"/>
+						        <field name="project_id"/>
+						        <field name="author_id"/>
+						        <field name="date_registered" readonly="1"/>
+						        <field name="date_modified"/>
+						        <field name="risk_category_id"/>
+                	        </group>
+				        </group>
+                        <group colspan="1" col="2">
+                            <field name="proximity_id"/>
+                        </group>
+			            <notebook colspan="4">
+   	            	        <page string="Description">
+                		        <field name="description_event"/>
+                		        <field name="description_cause"/>
+						        <field name="description_effect"/>
+                            </page>
+                            <page string="Risk Response">
+                                <group col="6" colspan="3">
+                                    <field name="risk_response_category_id"/>
+                                    <field name="risk_owner_id"/>
+                                </group>
+                                <group col="6" colspan="6">
+                                    <field name="risk_response_ids" string="Response Actions" context="{'user_invisible': True, 'default_project_id':project_id}"/>
+                                </group>
+                            </page>
+                            <page string="Risk Score">
+   	            	            <group col="6" colspan="4">
+   	            			        <group col="4" colspan="5">
+                    			        <field name="impact_inherent"/>
+								        <field name="probability_inherent"/>
+								        <field name="impact_residual"/>
+								        <field name="probability_residual"/>
+							        </group>
+		             		        <group col="2" colspan="1">
+								        <field name="expected_value_inherent" readonly="1" string="Inherent Risk Score"/>
+								        <field name="expected_value_residual" readonly="1" string="Residual Risk Score"/>
+							        </group>
+					            </group>
+                            </page>
+                        </notebook>
+                    </sheet>
            		</form>
 			</field>
 		</record>

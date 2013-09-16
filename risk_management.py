@@ -22,6 +22,8 @@
 from openerp.osv import osv, fields
 from datetime import date
 
+_RISK_STATE = [('draft','Draft'),('active','Active'),('closed','Closed')]
+
 class risk_management_risk_category (osv.osv):
     _name = 'risk.management.category'
     _description = 'Risk log category table'
@@ -96,13 +98,14 @@ class risk_management_risk (osv.osv):
         'proximity_id': fields.many2one('risk.management.proximity','Proximity', help="Proximity: This would typically state how close to the present time the risk event is anticipated to happen (e.g. for project risks Imminent, within stage, within project, beyond project).  Proximity should be recorded in accordance with the project's chosen scales or business continuity time scales."),
         'risk_response_category_id': fields.many2one('risk.management.response.category','Response Category', help="Risk Response Categories: How the project will treat the risk in terms of the project's (or business continuity planning) chosen categories."),
         'risk_response_ids': fields.one2many('project.task','risk_id','Response Ids'),
-        'state': fields.selection([('draft','Draft'),('active','Active'),('closed','Closed')],'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
+        #'state': fields.selection([('draft','Draft'),('active','Active'),('closed','Closed')],'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
+        'state': fields.selection(_RISK_STATE,'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
+    #    'stage_id': fields.selection([('draft','Draft'),('active','Active'),('closed','Closed')],'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
         'risk_owner_id': fields.many2one('res.users','Owner', help="Risk Owner: The person responsible for managing the risk (there can be only one risk owner per risk), risk ownership is assigned to a managerial level, in case of business continuity to a C-level manager."),
     }
     _defaults = {
-        'author_id': lambda obj,cr,uid,context: uid,                 
+        'author_id': lambda s,cr,uid,c: uid,
         'date_registered': lambda *a: date.today().strftime('%Y-%m-%d'),
         'state': 'draft',
-        'name': lambda obj,cr,uid,context: obj.pool.get('ir.sequence').get(cr, uid, 'risk.management.risk')
+        'name': lambda s,cr,uid,c: s.pool.get('ir.sequence').get(cr, uid, 'risk.management.risk')
 }
-risk_management_risk()
