@@ -14,7 +14,7 @@
             <field name="name">Imminent</field>
         </record>
 <record id="risk_management_proximity_within_stage" model="risk.management.proximity">
-            <field name="name">Within Stage</field>
+            <field name="name">Within Sprint</field>
         </record>
 <record id="risk_management_proximity_within_project" model="risk.management.proximity">
             <field name="name">Within Project</field>

@@ -55,7 +55,7 @@ risk_management_proximity()
 class risk_management_risk (osv.osv):
     _name = 'risk.management.risk'
     _description = 'Risk'
-    _inherit = ['mail.thread','ir.needaction_mixin']
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
 
     _track = {
         'state': {
@@ -92,6 +92,7 @@ class risk_management_risk (osv.osv):
         'description': fields.char('Risk Description',64, help="Short description of the Risk."),
         'project_id': fields.many2one('project.project', 'Project', required=True),
         'author_id': fields.many2one('res.users','Author', required=True),
+        'color': fields.integer('Color'),
         'date_registered': fields.date('Date Registered', required=True, help="Date of the Risk registered. Auto populated."),
         'date_modified': fields.date('Date Modified', help="Date of last update."),
         'risk_category_id': fields.many2one('risk.management.category','Risk Category', required=True, help="Risk Category: The type of risk in terms of the project's or business' chosen categories (e.g. Schedule, quality, legal etc.)"),
@@ -116,5 +117,6 @@ class risk_management_risk (osv.osv):
         'author_id': lambda s,cr,uid,c: uid,
         'date_registered': lambda *a: date.today().strftime('%Y-%m-%d'),
         'state': 'draft',
-        'name': lambda s,cr,uid,c: s.pool.get('ir.sequence').get(cr, uid, 'risk.management.risk')
+        'name': lambda s,cr,uid,c: s.pool.get('ir.sequence').get(cr, uid, 'risk.management.risk'),
+        'color': '0'
 }
