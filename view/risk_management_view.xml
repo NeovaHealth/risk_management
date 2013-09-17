@@ -178,6 +178,7 @@
                 <field name="expected_value_residual"/>
                 <field name="risk_response_category_id"/>
                 <field name="risk_response_ids"/>
+                <field name="risk_response_count"/>
                 <field name="risk_owner_id"/>
                 <field name="color"/>
                 <field name="message_summary"/>
@@ -211,15 +212,13 @@
                                    </li>
                                    <li>
                                        <label>Actions:</label>
-                                       <t t-esc="record.risk_response_ids.count"/>
-
+                                       <t t-esc="record.risk_response_count.value"/>
                                    </li>
                                 </div>
                                 <div class="oe_kanban_bottom_right">
                                     <img t-att-src="kanban_image('res.users', 'image_small', record.risk_owner_id.raw_value)" t-att-title="record.risk_owner_id.value" width="24" height="24" class="oe_kanban_avatar" t-if="record.risk_owner_id.value"/>
                                 </div>
                                 <div class="oe_kanban_footer_left">
-                                    <t t-raw="record.message_summary.raw_value"/>
                                 </div>
                             </div>
                             <div class="oe_clear"></div>

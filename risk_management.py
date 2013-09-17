@@ -64,7 +64,17 @@ class risk_management_risk (osv.osv):
             'risk.mt_risk_closed': lambda self, cr, uid, obj, ctx=None: obj['state'] in ['closed']
         }
     }
-    
+
+    def _risk_response_count(self, cr, uid, ids, field_name, arg, context=None):
+        ret = {}
+        try:
+            for risk in self.browse(cr, uid, ids, context):
+                ret[risk.id] = len(risk.risk_response_ids)
+        except:
+            pass
+        return ret
+
+
     def _calculate_expected_inherent_value(self, cr, uid, ids, field_name, arg, context={}):
         ret = {}
         for risk in self.browse(cr, uid, ids):
@@ -108,6 +118,7 @@ class risk_management_risk (osv.osv):
         'proximity_id': fields.many2one('risk.management.proximity','Proximity', help="Proximity: This would typically state how close to the present time the risk event is anticipated to happen (e.g. for project risks Imminent, within stage, within project, beyond project).  Proximity should be recorded in accordance with the project's chosen scales or business continuity time scales."),
         'risk_response_category_id': fields.many2one('risk.management.response.category','Response Category', help="Risk Response Categories: How the project will treat the risk in terms of the project's (or business continuity planning) chosen categories."),
         'risk_response_ids': fields.one2many('project.task','risk_id','Response Ids'),
+        'risk_response_count': fields.function(_risk_response_count, type='integer'),
         #'state': fields.selection([('draft','Draft'),('active','Active'),('closed','Closed')],'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
         'state': fields.selection(_RISK_STATE,'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
     #    'stage_id': fields.selection([('draft','Draft'),('active','Active'),('closed','Closed')],'State', readonly=True, help="A risk can have one of these three states: draft, active, closed."),
