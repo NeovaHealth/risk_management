@@ -32,9 +32,9 @@
 			<field name="arch" type="xml">
 				<form string="Risk" version="7.0">
                     <header>
-                        <button name="set_state_draft" type="object" states="active,closed" string="Set Draft" icon="gtk-execute"/>
-                        <button name="set_state_closed" type="object" states="active" string="Close Risk" icon="gtk-cancel"/>
-                        <button name="set_state_active" type="object" states="draft" string="Set Active" icon="gtk-apply"/>
+                        <button name="set_state_draft" type="object" states="active,closed" string="Set Draft"/>
+                        <button name="set_state_closed" type="object" states="active" string="Close Risk" class="oe_highlight"/>
+                        <button name="set_state_active" type="object" states="draft" string="Set Active" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,active,closed"/>
                     </header>
                     <sheet string="Risk">
@@ -194,34 +194,30 @@
                             </div>
                             <div class="oe_kanban_content">
                                 <div>
-                                   <li> <b><field name="description"/></b> </li>
-                                   <li> <field name="name"/>  </li>
-                                   <li> <field name="risk_category_id"/>  </li>
+                                    <ul>
+                                        <li><b><field name="description"/></b></li>
+                                        <li><field name="name"/></li>
+                                        <li><field name="risk_category_id"/></li>
+                                    </ul>
                                 </div>
                                 <div>
                                     <field name="project_id"/>
                                 </div>
                                 <div style="padding-left: 0.5em">
-                                   <li>
-                                       <field name="expected_value_inherent"/>
-                                       <label>(Inherent)</label>
-
-
-                                       <field string="Residual Score:" name="expected_value_residual"/>
-                                       <label>(Residual)</label>
-                                   </li>
-                                   <li>
-                                       <label>Actions:</label>
-                                       <t t-esc="record.risk_response_count.value"/>
-                                   </li>
+                                     <span><field name="expected_value_inherent"/>
+                                            <label>(Inherent)</label>
+                                            <field string="Residual Score:" name="expected_value_residual"/>
+                                            <label>(Residual)</label>
+                                        </span>
+                                        <span>
+                                            <label>Actions:</label>
+                                            <t t-esc="record.risk_response_count.value"/>
+                                        </span>
                                 </div>
-                                <div class="oe_kanban_bottom_right">
+                                <div class="oe_kanban_project_avatars">
                                     <img t-att-src="kanban_image('res.users', 'image_small', record.risk_owner_id.raw_value)" t-att-title="record.risk_owner_id.value" width="24" height="24" class="oe_kanban_avatar" t-if="record.risk_owner_id.value"/>
                                 </div>
-                                <div class="oe_kanban_footer_left">
-                                </div>
                             </div>
-                            <div class="oe_clear"></div>
                      </div>
                     </t>
                 </templates>
