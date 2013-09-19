@@ -172,6 +172,7 @@
                 <kanban version="7.0" class="oe_background_grey" default_group_by="state">
                 <field name="name"/>
                 <field name="description"/>
+                <field name="state"/>
                 <field name="project_id"/>
                 <field name="risk_category_id"/>
                 <field name="expected_value_inherent"/>
@@ -233,7 +234,6 @@
 			<field name="res_model">risk.management.risk</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,tree,form,graph</field>
-			<field name="view_id" ref="risk_tree_view"/>
 			<field name="search_view_id" ref="risk_search_form_view"/>
 			<field name="context">{"search_default_risk_owner_id": uid}</field>
 		</record>
