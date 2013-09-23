@@ -150,20 +150,7 @@
                 </search>
             </field>
         </record>	
-        	
-		
 
-		<record model="ir.ui.view" id="risk_graph_view">
-			<field name="name">risk.management.risk.graph.view</field>
-			<field name="model">risk.management.risk</field>
-			<field name="arch" type="xml">
-				<graph string="Risk Scores" type="bar">
-					<field name="name" string="Risk Name"/>
-					<field name="expected_value_inherent" string="Inherent Risk Score" operator="max"/>	
-					<field name="expected_value_residual" string="Residual Risk Score" operator="max"/>
-				</graph>
-			</field>
-		</record>
 
         <record id="risk_kanban_view" model="ir.ui.view">
             <field name="name">risk.management.risk.kanban.view</field>
@@ -233,7 +220,7 @@
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">risk.management.risk</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="view_mode">kanban,tree,form</field>
 			<field name="search_view_id" ref="risk_search_form_view"/>
 			<field name="context">{"search_default_risk_owner_id": uid}</field>
 		</record>

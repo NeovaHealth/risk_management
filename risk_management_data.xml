@@ -10,15 +10,21 @@
 <record id="risk_management_category_legal" model="risk.management.category">
             <field name="name">Legal</field>
         </record>
+<record id="risk_management_category_business_continuity" model="risk.management.category">
+        <field name="name">Business Continuity</field>
+</record>
 <record id="risk_management_proximity_imminent" model="risk.management.proximity">
             <field name="name">Imminent</field>
         </record>
 <record id="risk_management_proximity_within_stage" model="risk.management.proximity">
-            <field name="name">Within Sprint</field>
+            <field name="name">Within sprint</field>
         </record>
 <record id="risk_management_proximity_within_project" model="risk.management.proximity">
-            <field name="name">Within Project</field>
+            <field name="name">Within project</field>
         </record>
+<record id="risk_management_proximity_within_5_years" model="risk.management.proximity">
+        <field name="name">Within 5 years</field>
+</record>
 <record id="risk_management_risk_response_category_threat_avoid" model="risk.management.response.category">
             <field name="type">threat</field>
             <field name="name">Avoid</field>
