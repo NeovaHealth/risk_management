@@ -63,6 +63,21 @@
                             domain="[('risk_id','&lt;&gt;',False)]" help="Show only tasks (actions) on risk"
                             icon="terp-emblem-important"/>
                 </xpath>
+               <filter name="group_project_id" position="after">
+                    <filter string="Risk" name="group_risk_id" icon="terp-rating-rated" domain="[]" context="{'group_by' : 'risk_id'}"/>
+               </filter>
+            </field>
+        </record>
+
+        <record id="risk_management_project_task_kanban_view" model="ir.ui.view">
+            <field name="name">risk.management.inherit.task.kanban.view</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="before">
+                    <field name="risk_id"/>
+                    <br/>
+                </field>
             </field>
         </record>
 

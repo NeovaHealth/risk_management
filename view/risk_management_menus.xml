@@ -10,7 +10,7 @@
    
         <menuitem name="Risk Management" id="menu_risk_management" parent="menu_risk_top" sequence="1"/>
         <menuitem name="Risks" id="menu_risks" parent="menu_risk_management" action="action_show_risks"/>
-        <menuitem name="Actions" id="menu_actions_on_risk" parent="menu_risk_management"/>
+        <menuitem name="Tasks on Risks" id="menu_actions_on_risk" parent="menu_risk_management" action="action_show_actions"/>
 
         <menuitem name="Risks" id="menu_configuration_risks" parent="menu_risk_top"/>
 		<menuitem name="Categories" action="action_show_categories" id="menu_risk_categories" parent="menu_configuration_risks"/>
