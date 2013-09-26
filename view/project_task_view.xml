@@ -74,10 +74,16 @@
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_kanban"/>
             <field name="arch" type="xml">
+                <kanban position="attributes">
+                   <attribute name="default_group_by">risk_id</attribute>
+                </kanban>
                 <field name="project_id" position="before">
                     <field name="risk_id"/>
                     <br/>
+                    <field name="stage_id"/>
+                    <br/>
                 </field>
+
             </field>
         </record>
 

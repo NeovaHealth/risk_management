@@ -120,9 +120,9 @@
             <field name="arch" type="xml">
                <search string="Risk Edition">
 
-                        <filter string="Active" domain="[('state','=','active')]" help="Active risks" name="active" icon="gtk-execute"/>
+                        <filter string="Active Risks" domain="[('state','=','active')]" help="Active risks" name="active" icon="gtk-execute"/>
                         <separator orientation="vertical"/>
-                        <filter string="No Actions" domain="[('risk_response_ids','=',False)]"  help="Risks without actions"  name="no_actions" icon="terp-check"/>                   
+                        <filter string="Risks without actions" domain="[('risk_response_ids','=',False)]"  help="Risks without actions"  name="no_actions" icon="terp-check"/>
                         <separator orientation="vertical"/>
                         <field name="name" select="1"/>
                         <field name="project_id" select="1" domain="['|',('user_id','=',uid),('members','in',uid)]">
@@ -140,6 +140,7 @@
                     <group expand="0" string="Group By..." colspan="4" col="20"> 	                   
                         <filter string="Project" name="group_project_id" icon="terp-folder-violet" domain="[]" context="{'group_by':'project_id'}"/>
                         <separator orientation="vertical"/>
+                        <filter string="Risk Owner" name="group_risk_owner_id" icon="terp-stage" domain="[]" context="{'group_by':'risk_owner_id'}"/>
                         <filter string="Category" name="group_risk_category_id" icon="terp-stage" domain="[]" context="{'group_by':'risk_category_id'}"/>
                         <filter string="State" name="group_state" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
                         <separator orientation="vertical"/>
@@ -156,7 +157,7 @@
             <field name="name">risk.management.risk.kanban.view</field>
             <field name="model">risk.management.risk</field>
             <field name="arch"  type="xml">
-                <kanban version="7.0" class="oe_background_grey" default_group_by="state">
+                <kanban version="7.0" class="oe_background_grey" default_group_by="risk_owner_id">
                 <field name="name"/>
                 <field name="description"/>
                 <field name="state"/>
@@ -222,14 +223,13 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,tree,form</field>
 			<field name="search_view_id" ref="risk_search_form_view"/>
-			<field name="context">{"search_default_risk_owner_id": uid}</field>
 		</record>
 
         <record model="ir.actions.act_window" id="action_show_actions">
-            <field name="name">Tasks on Risks</field>
+            <field name="name">Actions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">project.task</field>
-            <field name="view_type">tree</field>
+            <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="search_view_id" ref="risk_management_project_task_search_view"/>
             <field name="domain">[('risk_id','!=',False)]</field>
