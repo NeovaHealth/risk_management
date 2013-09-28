@@ -21,6 +21,9 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from datetime import date
+import logging
+
+_logger = logging.getLogger(__name__)
 
 _RISK_STATE = [('draft','Draft'),('active','Active'),('closed','Closed')]
 
@@ -128,6 +131,33 @@ class risk_management_risk (osv.osv):
         'author_id': lambda s,cr,uid,c: uid,
         'date_registered': lambda *a: date.today().strftime('%Y-%m-%d'),
         'state': 'draft',
+        'impact_inherent': 0,
+        'impact_residual': 0,
+        'probability_inherent': 0,
+        'probability_residual': 0,
         'name': lambda s,cr,uid,c: s.pool.get('ir.sequence').get(cr, uid, 'risk.management.risk'),
         'color': '0'
-}
+    }
+
+    def _subscribe_extra_followers(self, cr, uid, ids, vals, context=None):
+        user_ids = [vals[x] for x in ['author_id','risk_owner_id'] if x in vals]
+        if len(user_ids)>0:
+            self.message_subscribe_users(cr, uid, ids, user_ids=user_ids, context=context)
+        if 'risk_response_ids' in vals:
+            followers_of_risk = self.read(cr, uid, ids, ['message_follower_ids'])
+            print 'followers:%s' % followers_of_risk[0]['message_follower_ids']
+            print vals
+
+
+
+    def write(self, cr, uid, ids, vals, context=None):
+        _logger.info(vals)
+        ret = super(risk_management_risk, self).write(cr, uid, ids, vals, context)
+        self._subscribe_extra_followers(cr, uid, ids, vals, context)
+        return ret
+
+    def create(self, cr, uid, vals, context=None):
+        _logger.info(vals)
+        risk_id = super(risk_management_risk, self).create(cr, uid, vals, context)
+        self._subscribe_extra_followers(cr, uid, [risk_id], vals, context)
+        return risk_id

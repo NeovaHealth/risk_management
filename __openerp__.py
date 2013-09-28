@@ -43,8 +43,7 @@
        Risk description, author, date registered, date modified, event, effect, cause and risk owner.
        
        Two user groups are added, which a user must be associated with to work with Risks, either Risk / User or Risk / Manager.
-        
-       More information can be found on our website: http://valuedecision.com
+
        
     """,
     'depends': ['project'],
