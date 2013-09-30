@@ -231,7 +231,7 @@
             <field name="res_model">project.task</field>
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>
-            <field name="view_id" ref="risk_management.risk_management_task_kanban_view"/>
+            <field name="view_id" ref="view_task_kanban"/>
             <field name="search_view_id" ref="risk_management_project_task_search_view"/>
             <field name="domain">[('risk_id','!=',False)]</field>
         </record>

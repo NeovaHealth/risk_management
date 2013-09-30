@@ -75,6 +75,7 @@
         <record model="ir.ui.view" id="view_task_kanban">
             <field name="name">risk.management.task.kanban.view</field>
             <field name="model">project.task</field>
+            <field name="priority">60</field>
             <field name="arch" type="xml">
                 <kanban default_group_by="risk_id" >
                     <field name="color"/>
