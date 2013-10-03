@@ -3,7 +3,7 @@ __author__ = 'valdec'
 from openerp.tests import common
 from datetime import datetime
 
-class TestRisks(common.SingleTransactionCase):
+class TestRisks(common.TransactionCase):
 
     def setUp(self):
 
@@ -13,6 +13,7 @@ class TestRisks(common.SingleTransactionCase):
 
         self.risk_model = self.registry('risk.management.risk')
         self.project_model = self.registry('project.project')
+        self.task_model = self.registry('project.task')
         self.user_model = self.registry('res.users')
 
         self.test_project_id = self.project_model.create(cr, uid,{
@@ -20,7 +21,7 @@ class TestRisks(common.SingleTransactionCase):
         })
         self.risk_owner_id = self.user_model.search(cr, uid, [('name','=','Demo User')])[0]
         self.risk_author_id = self.user_model.search(cr, uid, [('name','=','Risk User')])[0]
-        self.risk_second_author_id = self.user_model.search(cr, uid,[('name','=','Risk Manager')])[0]
+        self.risk_second_author_id = self.user_model.search(cr, uid,[('login','=','riskmanager')])[0]
 
         self.test_risk_id = self.risk_model.create(cr, uid, {
              'name': 'RiskTest0001',
@@ -54,8 +55,8 @@ class TestRisks(common.SingleTransactionCase):
 
     def test_adding_a_task_on_a_risk(self):
         cr, uid = self.cr, self.uid
-        user = self.user_model.browse(cr, uid, uid)
         risk = self.risk_model.read(cr, uid, self.test_risk_id, ['message_follower_ids'])
+        followers = risk['message_follower_ids']
         self.risk_model.write(cr, uid, [self.test_risk_id],
                               {'risk_response_ids': [
                                   [0, False,
@@ -73,7 +74,7 @@ class TestRisks(common.SingleTransactionCase):
                                      'company_id': 1,
                                      'work_ids': [],
                                      'parent_ids': [[6, False, []]],
-                                     'message_follower_ids': risk['message_follower_ids'],
+                                     'message_follower_ids': followers,
                                      'categ_ids': [[6, False, []]],
                                      'project_id': 1,
                                      'partner_id': False,
@@ -81,8 +82,12 @@ class TestRisks(common.SingleTransactionCase):
                                      'description': 'A new Task'}]]
                               })
 
-        risk_response_ids = risk.risk_response_ids
-        print risk_response_ids
+
+        task_ids = self.risk_model.read(cr, uid, self.test_risk_id, ['risk_response_ids'])
+        tasks = self.task_model.read(cr, uid, task_ids['risk_response_ids'],['message_follower_ids'])
+        for task in tasks:
+            self.assertEqual(followers, task['message_follower_ids'],msg='Followers are not set on the associated action')
+
 
 
 

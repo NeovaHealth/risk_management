@@ -140,24 +140,23 @@ class risk_management_risk (osv.osv):
     }
 
     def _subscribe_extra_followers(self, cr, uid, ids, vals, context=None):
-        user_ids = [vals[x] for x in ['author_id','risk_owner_id'] if x in vals]
+        user_ids = [vals[x] for x in ['author_id','risk_owner_id'] if x in vals and vals[x] != False]
         if len(user_ids)>0:
             self.message_subscribe_users(cr, uid, ids, user_ids=user_ids, context=context)
-        if 'risk_response_ids' in vals:
-            followers_of_risk = self.read(cr, uid, ids, ['message_follower_ids'])
-            print 'followers:%s' % followers_of_risk[0]['message_follower_ids']
-            print vals
 
+        risks = self.read(cr, uid, ids, ['message_follower_ids','risk_response_ids'])
+        for risk in risks:
+            if 'risk_response_ids' in risk and risk['risk_response_ids']:
+                task_ob = self.pool.get('project.task')
+                task_ob.message_subscribe(cr, uid, risk['risk_response_ids'], risk['message_follower_ids'], context=context)
 
 
     def write(self, cr, uid, ids, vals, context=None):
-        _logger.info(vals)
         ret = super(risk_management_risk, self).write(cr, uid, ids, vals, context)
         self._subscribe_extra_followers(cr, uid, ids, vals, context)
         return ret
 
     def create(self, cr, uid, vals, context=None):
-        _logger.info(vals)
         risk_id = super(risk_management_risk, self).create(cr, uid, vals, context)
         self._subscribe_extra_followers(cr, uid, [risk_id], vals, context)
         return risk_id
