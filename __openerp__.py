@@ -61,7 +61,6 @@
     'test': ['test/test_risk_management.yml'],
     'installable': True,
     'application': True,
-    'images': ['images/Risk_Action.jpg','images/Risk_Score.jpg','Task_Action_on_Risk.jpg'],
     'active': False,
 }
 
