@@ -6,14 +6,12 @@
         <field name="name">Risk User</field>
         <field name="company_id" ref="base.main_company"/>
         <field name="customer" eval="False"/>
-        <field name="email">risk_user@tactix4.com</field>
     </record>
 
     <record id="partner_risk_manager" model="res.partner">
         <field name="name">Risk Manager</field>
         <field name="company_id" ref="base.main_company"/>
         <field name="customer" eval="False"/>
-        <field name="email">risk_manager@tactix4.com</field>
     </record>
 
     <record id="user_risk_user" model="res.users">
