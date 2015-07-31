@@ -17,7 +17,7 @@
           <group>
             <field name="date_deadline" /> <!-- attrs="{'readonly':[('state','in',['done', 'cancelled'])]}"/> -->
             <field name="categ_ids" widget="many2many_tags"/>
-            <field name="progress" widget="progressbar" groups="project.group_time_work_estimation_tasks" attrs="{'invisible':[('state','=','cancelled')]}"/> 
+            <field name="progress" widget="progressbar" groups="project.group_time_work_estimation_tasks"/> <!--attrs="{'invisible':[('state','=','cancelled')]}"--> 
             <field name="risk_id" />
           </group>
         </xpath>
@@ -95,7 +95,7 @@
                         <li><a name="set_remaining_time_2" type="object" class="oe_kanban_button">2</a></li>
                         <li><a name="set_remaining_time_5" type="object" class="oe_kanban_button">5</a></li>
                         <li><a name="set_remaining_time_10" type="object" class="oe_kanban_button">10</a></li>
-                        <li><a name="do_open" states="draft" string="Validate planned time" type="object" class="oe_kanban_button oe_kanban_button_active">!</a></li>
+                        <!-- <li><a name="do_open" states="draft" string="Validate planned time" type="object" class="oe_kanban_button oe_kanban_button_active">!</a></li> -->
                       </ul>
                     </li>
                     <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
