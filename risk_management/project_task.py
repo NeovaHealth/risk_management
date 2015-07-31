@@ -27,8 +27,7 @@ class project_task (models.Model):
     
     risk_id  = fields.Many2one(
             'risk.management.risk', 'Action on Risk', readonly=True, 
-            help="Task is an action on a risk identified by this label."
-    )
+            help="Task is an action on a risk identified by this label.") 
 
 project_task()
     
