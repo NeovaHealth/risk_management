@@ -19,16 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
-class project_task (osv.osv):
+class project_task (models.Model):
     _name = 'project.task'
     _inherit = 'project.task'
     
-    _columns = {
-        'risk_id': fields.many2one('risk.management.risk','Action on Risk', readonly=True,
-                                   help="Task is an action on a risk identified by this label.")
-    }
+    risk_id  = fields.Many2one(
+            'risk.management.risk', 'Action on Risk', readonly=True, 
+            help="Task is an action on a risk identified by this label."
+    )
 
 project_task()
     
