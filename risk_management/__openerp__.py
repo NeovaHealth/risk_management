@@ -3,7 +3,7 @@
 #    
 #    OpenERP, Open Source Enterprise Management Solution
 #    risk_management Module
-#    Copyright (C) 2011 ValueDecision Ltd (<http://www.valuedecision.com>).
+#    Copyright (C) 2015 Neova Health (<http://www.neovahealth.co.uk>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,8 +22,8 @@
 {
     'name': 'Risk Management',
     'version': '2.0',
-    'author': 'Tactix4 Ltd',
-    'website': 'http://www.tactix4.com',
+    'author': 'Neova Health',
+    'website': 'http://www.neovahealth.co.uk',
     'category': 'Project Management',
     'description': """
        This module allows to manage risk in at least two different contexts:
@@ -47,7 +47,7 @@
        
     """,
     'depends': ['project'],
-    'update_xml':['risk_management_data.xml',
+    'data':['risk_management_data.xml',
                   'risk_management_sequence.xml',
                   'security/risk_management_security.xml',
                   'security/ir.model.access.csv',

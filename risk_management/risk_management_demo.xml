@@ -1,38 +1,64 @@
 <?xml version="1.0"?>
 <openerp>
-<data>
+  <data>
 
     <record id="partner_risk_user" model="res.partner">
-        <field name="name">Risk User</field>
-        <field name="company_id" ref="base.main_company"/>
-        <field name="customer" eval="False"/>
+      <field name="name">Risk User</field>
+      <field name="company_id" ref="base.main_company"/>
+      <field name="customer" eval="False"/>
     </record>
 
     <record id="partner_risk_manager" model="res.partner">
-        <field name="name">Risk Manager</field>
-        <field name="company_id" ref="base.main_company"/>
-        <field name="customer" eval="False"/>
+      <field name="name">Risk Manager</field>
+      <field name="company_id" ref="base.main_company"/>
+      <field name="customer" eval="False"/>
     </record>
 
     <record id="user_risk_user" model="res.users">
-        <field name="partner_id" ref="partner_risk_user"/>
-        <field name="login">riskuser</field>
-        <field name="password">riskuser</field>
-        <field name="signature">--
-            Mr Risk Uesr</field>
-        <field name="company_id" ref="base.main_company"/>
-        <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('group_risk_management_user')])]"/>
+      <field name="partner_id" ref="partner_risk_user"/>
+      <field name="login">riskuser</field>
+      <field name="password">riskuser</field>
+      <field name="signature">--
+        Mr Risk User</field>
+      <field name="company_id" ref="base.main_company"/>
+      <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('group_risk_management_user')])]"/>
     </record>
 
     <record id="user_risk_manager" model="res.users">
-        <field name="partner_id" ref="partner_risk_manager"/>
-        <field name="login">riskmanager</field>
-        <field name="password">riskmanager</field>
-        <field name="signature">--
-            Mr Risk Manager</field>
-        <field name="company_id" ref="base.main_company"/>
-        <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('group_risk_management_manager')])]"/>
+      <field name="partner_id" ref="partner_risk_manager"/>
+      <field name="login">riskmanager</field>
+      <field name="password">riskmanager</field>
+      <field name="signature">--
+          Mr Risk Manager</field>
+      <field name="company_id" ref="base.main_company"/>
+      <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('group_risk_management_manager')])]"/>
     </record>
 
-</data>
+    <record id="risk_skyfall" model="risk.management.risk">
+      <field name="name">RI0001</field>
+      <field name="description">Sky falling on our heads</field>
+      <field name="project_id" ref="project.project_project_1"/>
+      <field name="author_id" ref="user_risk_manager"/>
+      <field name="risk_category_id" ref="risk_management_category_schedule"/>
+      <field name="proximity_id" ref="risk_management_proximity_imminent"/>
+      <field name="risk_response_category_id" ref="risk_management_risk_response_category_threat_avoid"/>
+      <field name="risk_owner_id" ref="user_risk_manager"/>
+      <field name="description_event">The sky will collapse and fall on our heads.</field>
+      <field name="description_cause">Caused by the upsetting the gods or mother nature eternal.</field>
+      <field name="description_effect">It would be devastating and hurt. Alot.</field>
+      <field name="impact_inherent">9</field>
+      <field name="probability_inherent">2</field>
+      <field name="impact_residual">7</field>
+      <field name="probability_residual">1</field>
+    </record>
+
+    <record id="project_skyfall_task_1" model="project.task">
+      <field name="name">Negotiate with gods</field>
+      <field name="description">Discuss with the gods the possibility of them not collapsing the sky.</field>
+      <field name="user_id" ref="user_risk_user"/>
+      <field name="project_id" ref="project.project_project_1"/>
+      <field name="risk_id" ref="risk_skyfall"/>
+    </record>
+
+  </data>
 </openerp>

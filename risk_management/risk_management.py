@@ -3,7 +3,7 @@
 #    
 #    OpenERP, Open Source Enterprise Management Solution
 #    risk_management Module
-#    Copyright (C) 2011 ValueDecision Ltd (<http://www.valuedecision.com>).
+#    Copyright (C) 2015 Neova Health (<http://www.neovahealth.co.uk>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
