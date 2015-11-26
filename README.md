@@ -13,6 +13,6 @@ Features
 * Contribute by following risks and through visible discussion
 * Organise your actions through a Kanban view for an instance overview on your risks and actions
 
-Risk Management is currently available for [Odoo 7](https://apps.openerp.com/apps/modules/7.0/risk_management/). An Odoo 8 release will be available shortly.
+Risk Management is currently available for [Odoo 7](https://apps.openerp.com/apps/modules/7.0/risk_management/).
 
 Copyright &copy; 2015 Neova Health (<http://www.neovahealth.co.uk>).
